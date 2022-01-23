@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+    <!-- <h1>MY CANVAS </h1> -->
+    <i class="fal fa-rectangle-wide"></i>
+    <i class="fas fa-grip-lines-vertical"></i>
+    <!-- It is used to draw  -->
+    <canvas></canvas>
+     <Script> //  It is used to inject the java script code into html 
+     let canvasBoard = document.querySelector("canvas");
+     let tool = canvasBoard.getContext("2d");//it is used to draw on canvas here
+     
+     //gave area manually because default height and width of canvas is small that is 300 x 150
+     canvasBoard.height = window.innerHeight;
+     canvasBoard.width = window.innerWidth;
+
+    //  tool.fillStyle='Blue';//it will fill the whole background area
+    //  tool.fillRect(0,0,200,200); //by this line we would be able to draw rectangle
+    
+
+    //  tool.strokeStyle = 'red';// it will just give color to the border only
+    //  tool.strokeRect(0,0,200,200); // it will help to draw border 
+
+    //  tool.fillStyle="green"; //and by using fillstyle and fill react again it will appear on the avove the previous fillRectangle
+    //  tool.fillRect(50,50,100,100);
+
+    // let body = document.querySelector("body");
+     
+    //  body.addEventListener("mousedown",function (e) { // event ko sun ne wala -------------- here e is object which describe the event
+    //      //alert("mouse is being pressed at this position");
+    //      let xPos = e.clientX;
+    //      let yPos = e.clientY;
+    //      console.log(xPos,yPos); 
+         
+    //  })
+
+    //  body.addEventListener("mouseup", function (e)
+    //   {
+    //     //alert("mouse is being released  at this position");
+    //      let xPos = e.clientX;
+    //      let yPos = e.clientY;
+    //      console.log(xPos,yPos); 
+         
+    //  })
+
+    let body = document.querySelector("body");
+
+    let rectTool = document.querySelector(".fa-rectangle-wide");//
+    let lineTool = document.querySelector(".fa-grip-lines-vertical"); 
+
+    rectTool.addEventListener("click",function (e) {
+        currentTool = "rectTool";
+        
+    })
+    lineTool.addEventListener("click",function (e) {
+        currentTool = "lineTool";
+        
+    })
+
+         
+    let ix,iy,fx,fy; // here we are assigning the initial and final value of x and y
+
+    let boardTop = canvasBoard.getBoundingClientRect().top;
+    let boardLeft = canvasBoard.getBoundingClientRect().left;
+
+    body.addEventListener("mousedown" ,function (e) {
+        //here initial value of x and y is being stored
+        ix = e.clientX + boardLeft;
+        iy = e.clientY - boardTop;
+        
+    }) 
+
+    body.addEventListener("mouseup" ,function (e) {
+        //here final value of x and y is being stored
+        fx = e.clientX + boardLeft;
+        fy = e.clientY - boardTop;
+        let width = fx - ix;
+        let height = fy - iy;
+
+        //if user is touching on rectangle tool it should draw rectangle 
+
+        if(currentTool =="rectTool"){
+        tool.strokeRect(ix,iy,width,height);
+        }
+        //if user will touch line tool then line should draw
+        else{
+            tool.beginPath();
+            tool.moveTo(ix,iy);
+            tool.lineTo(fx,fy);
+            tool.stroke();
+        }
+        
+    })  
+    </Script>
+    
+</body>
+</html>

@@ -1,0 +1,52 @@
+.fal{
+    font-size: 2rem;
+    margin-left: 30px;
+    margin-left: 30px;
+}
+
+.fas{
+    font-size: 2rem;
+    margin-left: 30px;
+    margin-left: 30px;
+}
+
+/* div{
+    border : 1 px solid greenyellow;
+    background-color:lightsalmon;
+}
+body{
+    border:1px solid blueviolet;
+}
+html{
+    border:1px solid grey;
+
+} */
+
+.outer{
+    border:3px solid mediumvioletred;
+    width: 300px;
+    display:flex;/* give space to children  */
+    justify-content: space-evenly;
+    align-items :center; /* vertical align */
+}
+
+.red{
+    background-color: rgb(252, 93, 93);
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+}
+
+.green{
+    background-color: rgb(136, 231, 172);
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.blue{
+    background-color: rgb(103, 106, 250);
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+}
